@@ -3,9 +3,17 @@
 module.exports = function (result) {
     var rstream = fs.createReadStream('./EmptyCSSFile.css');
 
-    rstream.pipe(result.stream);
+/*
+rstream.on("data", (d) => {
+    result.stream.write(d);
+});
+rstream.on("end", () => {
+    setTimeout(() => {
 
-        // fs.readFile('./EmptyCSSFile.css', "utf8", function (err, content) {
-        //    result(null, content);
-        // });
+    result.stream.end();
+    }, 10000);
+});
+*/
+
+    rstream.pipe(result.stream);
 };

@@ -20,7 +20,6 @@ namespace NodeServicesExamples
 			services.AddNodeServices(options => {
                 options.UseSocketHosting();
             });
-            services.AddSpaPrerenderer();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -28,6 +27,7 @@ namespace NodeServicesExamples
         {
             app.UseDeveloperExceptionPage();
 
+            /*
             // Dynamically transpile any .js files under the '/js/' directory
             app.Use(next => async context => {
                 var requestPath = context.Request.Path.Value;
@@ -43,6 +43,7 @@ namespace NodeServicesExamples
                 // Not a JS file, or doesn't exist - let some other middleware handle it
                 await next.Invoke(context);
             });
+            */
 
             app.UseStaticFiles();
             app.UseMvc(routes =>

@@ -19,15 +19,21 @@ namespace NodeServicesExamples.Controllers
             return View();
         }
 
-		public FileStreamResult Stream([FromServices] INodeServices nodeServices)
-		{
-			//var d = nodeServices.InvokeAsync<Stream>("./addNumbers");
-			//var a = d.Result;
+        // public FileStreamResult Stream([FromServices] INodeServices nodeServices)
 
-		    //return new FileStreamResult(a, "text/plain");
-            
+        public FileStreamResult Stream([FromServices] INodeServices nodeServices)
+		{
+            var d = nodeServices.InvokeAsync<Stream>("./addNumbers");
+			var a = d.Result;
+		    return new FileStreamResult(a, "text/plain");
+           
+            /*
 		    var fileStream = new FileStream("EmptyCSSFile.css", FileMode.Open, FileAccess.Read);
 		    return new FileStreamResult(fileStream, "text/plain");
+            */
+
+            //var file = Path.Combine(Directory.GetCurrentDirectory(), "EmptyCSSFile.css");
+            // return PhysicalFile(file, "text/plain");
         }
 
         public async Task<IActionResult> Chart([FromServices] INodeServices nodeServices)
